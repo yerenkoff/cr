@@ -1,15 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isDeployed, setIsDeployed] = useState(false)
+
+  useEffect(() => {
+    // Проверяем, работает ли приложение на GitHub Pages
+    setIsDeployed(window.location.href.includes('github.io'))
+  }, [])
 
   return (
-    <>
-      <h1>Привет!</h1>
-    </>
+    <div className="app">
+      <h1>Привет из Crypto Brains!</h1>
+      {isDeployed ? (
+        <p>Сайт успешно задеплоен на GitHub Pages 🎉</p>
+      ) : (
+        <p>Локальная разработка</p>
+      )}
+    </div>
   )
 }
 
