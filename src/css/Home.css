@@ -296,10 +296,8 @@
     margin: 0 20px;
 }
 
-/* Стили для маркет секции */
 .market {
   padding: 60px 0;
-  background: #1E1F25;
 }
 
 .market .container {
@@ -425,7 +423,24 @@
   letter-spacing: 0.5px;
 }
 
-/* Адаптивность */
+.button-see {
+  margin-bottom: 60px;
+}
+
+.button-see .container {
+  text-align: center;
+}
+
+.button-see a {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #1B70F1;
+  color: #FFFFFF;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .market-header {
     flex-direction: column;

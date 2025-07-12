@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LineElement,
@@ -7,24 +7,24 @@ import {
   LinearScale,
   Title,
   CategoryScale,
-  Tooltip
-} from 'chart.js';
-import logo from '../assets/logo.svg';
-import share from '../assets/share.svg';
-import welcome_polosa from '../assets/welcome-polosa.svg';
-import up from '../assets/progress-up.svg';
-import down from '../assets/progress-down.svg';
-import line_market from '../assets/market-line.svg';
-import btcIcon from '../assets/btc.svg';
-import ethIcon from '../assets/btc.svg';
-import solIcon from '../assets/btc.svg';
-import xrpIcon from '../assets/btc.svg';
-import adaIcon from '../assets/btc.svg';
-import bnbIcon from '../assets/btc.svg';
-import dogeIcon from '../assets/btc.svg';
-import maticIcon from '../assets/btc.svg';
-import '../css/Home.css';
-import laptop from '../assets/laptop.png';
+  Tooltip,
+} from "chart.js";
+import logo from "../assets/logo.svg";
+import share from "../assets/share.svg";
+import welcome_polosa from "../assets/welcome-polosa.svg";
+import up from "../assets/progress-up.svg";
+import down from "../assets/progress-down.svg";
+import line_market from "../assets/market-line.svg";
+import btcIcon from "../assets/btc.svg";
+import ethIcon from "../assets/btc.svg";
+import solIcon from "../assets/btc.svg";
+import xrpIcon from "../assets/btc.svg";
+import adaIcon from "../assets/btc.svg";
+import bnbIcon from "../assets/btc.svg";
+import dogeIcon from "../assets/btc.svg";
+import maticIcon from "../assets/btc.svg";
+import "../css/Home.css";
+import laptop from "../assets/laptop.png";
 
 ChartJS.register(
   LineElement,
@@ -36,43 +36,44 @@ ChartJS.register(
 );
 
 const MARKET_CRYPTO_PAIRS = [
-  { symbol: 'BTCUSDT', name: 'Bitcoin', short: 'BTC', icon: btcIcon },
-  { symbol: 'ETHUSDT', name: 'Ethereum', short: 'ETH', icon: ethIcon },
-  { symbol: 'BNBUSDT', name: 'Binance Coin', short: 'BNB', icon: bnbIcon },
-  { symbol: 'SOLUSDT', name: 'Solana', short: 'SOL', icon: solIcon },
-  { symbol: 'XRPUSDT', name: 'Ripple', short: 'XRP', icon: xrpIcon },
-  { symbol: 'ADAUSDT', name: 'Cardano', short: 'ADA', icon: adaIcon },
-  { symbol: 'DOGEUSDT', name: 'Dogecoin', short: 'DOGE', icon: dogeIcon },
+  { symbol: "BTCUSDT", name: "Bitcoin", short: "BTC", icon: btcIcon },
+  { symbol: "ETHUSDT", name: "Ethereum", short: "ETH", icon: ethIcon },
+  { symbol: "BNBUSDT", name: "Binance Coin", short: "BNB", icon: bnbIcon },
+  { symbol: "SOLUSDT", name: "Solana", short: "SOL", icon: solIcon },
+  { symbol: "XRPUSDT", name: "Ripple", short: "XRP", icon: xrpIcon },
+  { symbol: "ADAUSDT", name: "Cardano", short: "ADA", icon: adaIcon },
 ];
 
 const MarketCard = ({ data }) => {
-  const changeValue = typeof data.change === 'string' ? 
-    parseFloat(data.change) : data.change;
-  
+  const changeValue =
+    typeof data.change === "string" ? parseFloat(data.change) : data.change;
+
   const generateChartData = (currentPrice, isPositive) => {
     const dataPoints = [];
     let value = currentPrice * (isPositive ? 0.9 : 1.1);
-    
+
     for (let i = 0; i < 7; i++) {
-      const fluctuation = (Math.random() * 0.05);
+      const fluctuation = Math.random() * 0.05;
       value = value * (1 + (isPositive ? fluctuation : -fluctuation));
       dataPoints.push(value);
     }
     dataPoints.push(currentPrice);
-    
+
     return dataPoints;
   };
 
   const chartData = {
-    labels: ['', '', '', '', '', '', '', ''],
-    datasets: [{
-      data: generateChartData(data.price, changeValue >= 0),
-      borderColor: changeValue >= 0 ? '#06B470' : '#F6465D',
-      borderWidth: 2,
-      tension: 0.4,
-      fill: false,
-      pointRadius: 0
-    }]
+    labels: ["", "", "", "", "", "", "", ""],
+    datasets: [
+      {
+        data: generateChartData(data.price, changeValue >= 0),
+        borderColor: changeValue >= 0 ? "#06B470" : "#F6465D",
+        borderWidth: 2,
+        tension: 0.4,
+        fill: false,
+        pointRadius: 0,
+      },
+    ],
   };
 
   return (
@@ -84,29 +85,38 @@ const MarketCard = ({ data }) => {
           <span>{data.short}</span>
         </div>
       </div>
-      
+
       <div className="card-chart">
-        <Line 
-          data={chartData} 
+        <Line
+          data={chartData}
           options={{
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: { enabled: false } },
-            scales: { y: { display: false }, x: { display: false } }
-          }} 
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false },
+            },
+            scales: { y: { display: false }, x: { display: false } },
+          }}
         />
       </div>
-      
+
       <div className="card-footer">
-        <div className={`percentage ${changeValue >= 0 ? 'positive' : 'negative'}`}>
+        <div
+          className={`percentage ${changeValue >= 0 ? "positive" : "negative"}`}
+        >
           <img src={changeValue >= 0 ? up : down} alt="" />
-          {changeValue >= 0 ? '+' : ''}{changeValue.toFixed(2)}%
+          {changeValue >= 0 ? "+" : ""}
+          {changeValue.toFixed(2)}%
         </div>
         <div className="price">
-          ${' '}
+          ${" "}
           {data.price > 1000
-            ? data.price.toLocaleString('en-US', { maximumFractionDigits: 2 })
-            : data.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}
+            ? data.price.toLocaleString("en-US", { maximumFractionDigits: 2 })
+            : data.price.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 6,
+              })}
         </div>
       </div>
     </div>
@@ -121,50 +131,57 @@ export default function Home() {
   const formatPrice = (price) => {
     const number = parseFloat(price);
     if (number > 1000) {
-      return number.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      return number.toLocaleString("en-US", { maximumFractionDigits: 2 });
     }
-    return number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 });
+    return number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 6,
+    });
   };
 
   const fetchCryptoData = async () => {
     try {
       setIsAnimating(true);
-      
+
       // Для верхних карточек
-      const topPairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'XRPUSDT', 'ADAUSDT'];
+      const topPairs = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "ADAUSDT"];
       const topResults = await Promise.all(
-        topPairs.map(symbol => 
-          fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`)
-            .then(res => res.json())
+        topPairs.map((symbol) =>
+          fetch(
+            `https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`
+          ).then((res) => res.json())
         )
       );
-      
-      setCryptoData(topResults.map((data, index) => ({
-        pair: `${topPairs[index].replace('USDT', '')}/USDT`,
-        change: parseFloat(data.priceChangePercent),
-        price: formatPrice(data.lastPrice),
-        rawPrice: data.lastPrice
-      })));
-      
+
+      setCryptoData(
+        topResults.map((data, index) => ({
+          pair: `${topPairs[index].replace("USDT", "")}/USDT`,
+          change: parseFloat(data.priceChangePercent),
+          price: formatPrice(data.lastPrice),
+          rawPrice: data.lastPrice,
+        }))
+      );
+
       // Для маркет секции - реальные данные
       const marketResults = await Promise.all(
-        MARKET_CRYPTO_PAIRS.map(pair => 
-          fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${pair.symbol}`)
-            .then(res => res.json())
+        MARKET_CRYPTO_PAIRS.map((pair) =>
+          fetch(
+            `https://api.binance.com/api/v3/ticker/24hr?symbol=${pair.symbol}`
+          )
+            .then((res) => res.json())
             .catch(() => null)
         )
       );
-      
+
       const validMarketData = marketResults
-        .filter(data => data !== null)
+        .filter((data) => data !== null)
         .map((data, index) => ({
           ...MARKET_CRYPTO_PAIRS[index],
           price: parseFloat(data.lastPrice),
-          change: parseFloat(data.priceChangePercent)
+          change: parseFloat(data.priceChangePercent),
         }));
-      
+
       setMarketData(validMarketData);
-      
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     } finally {
@@ -188,15 +205,27 @@ export default function Home() {
           </div>
 
           <nav className="header-nav">
-            <a href="#" className="nav-link">Market</a>
-            <a href="#" className="nav-link">Trade</a>
-            <a href="#" className="nav-link">Earn</a>
-            <a href="#" className="nav-link">About</a>
+            <a href="#" className="nav-link">
+              Market
+            </a>
+            <a href="#" className="nav-link">
+              Trade
+            </a>
+            <a href="#" className="nav-link">
+              Earn
+            </a>
+            <a href="#" className="nav-link">
+              About
+            </a>
           </nav>
 
           <div className="header-right">
-            <button className="login-button"><a href="#">Log In</a></button>
-            <button className="register-button"><a href="#">Sign In</a></button>
+            <button className="login-button">
+              <a href="#">Log In</a>
+            </button>
+            <button className="register-button">
+              <a href="#">Sign In</a>
+            </button>
           </div>
         </div>
       </header>
@@ -209,25 +238,32 @@ export default function Home() {
                 <div className="polosa"></div>
                 <h2>Crypto Brains</h2>
               </div>
-              <h1>Buy & Sell Crypto Easy <br /> With Crypto Brains</h1>
+              <h1>
+                Buy & Sell Crypto Easy <br /> With Crypto Brains
+              </h1>
               <img src={welcome_polosa} alt="" />
-              <p className='desk-welcome'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              <p className="desk-welcome">
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+              </p>
             </div>
 
             <div className="links">
-              <a className='start' href="#">
+              <a className="start" href="#">
                 <span className="start-content">
-                  Start now 
+                  Start now
                   <span className="icon-wrapper">
-                    <img src={share} alt="" className="share-icon"/>
+                    <img src={share} alt="" className="share-icon" />
                   </span>
                 </span>
               </a>
-              <a className='guide' href="#">Beginner's Guide</a>
+              <a className="guide" href="#">
+                Beginner's Guide
+              </a>
             </div>
           </div>
           <div className="right">
-            <img src={laptop} alt="Crypto platform" className="laptop-img"/>
+            <img src={laptop} alt="Crypto platform" className="laptop-img" />
           </div>
         </div>
       </div>
@@ -236,25 +272,36 @@ export default function Home() {
         <div className="container">
           {cryptoData.map((item, index) => (
             <React.Fragment key={index}>
-              <div className={`card ${isAnimating ? 'card-fade-out' : 'card-fade-in'}`}>
+              <div
+                className={`card ${
+                  isAnimating ? "card-fade-out" : "card-fade-in"
+                }`}
+              >
                 <div className="top">
-                  <p className='cryptoName'>{item.pair}</p>
+                  <p className="cryptoName">{item.pair}</p>
                   <div className="price-change">
-                    <img 
-                      src={item.change >= 0 ? up : down} 
-                      alt={item.change >= 0 ? "Рост" : "Падение"} 
-                      className="change-icon" 
+                    <img
+                      src={item.change >= 0 ? up : down}
+                      alt={item.change >= 0 ? "Рост" : "Падение"}
+                      className="change-icon"
                     />
-                    <span className={`point ${item.change >= 0 ? 'positive' : 'negative'}`}>
-                      {item.change >= 0 ? '+' : ''}{item.change.toFixed(2)}%
+                    <span
+                      className={`point ${
+                        item.change >= 0 ? "positive" : "negative"
+                      }`}
+                    >
+                      {item.change >= 0 ? "+" : ""}
+                      {item.change.toFixed(2)}%
                     </span>
                   </div>
                 </div>
                 <div className="bottom">
-                  <p>${' '}{item.price}</p>
+                  <p>$ {item.price}</p>
                 </div>
               </div>
-              {index < cryptoData.length - 1 && <div className="polosa-progress"></div>}
+              {index < cryptoData.length - 1 && (
+                <div className="polosa-progress"></div>
+              )}
             </React.Fragment>
           ))}
         </div>
@@ -265,20 +312,38 @@ export default function Home() {
           <div className="market-header">
             <h1>Market Trends</h1>
             <ul>
-              <li><a href="#">All</a></li>
-              <li><a href="#">Top Gainers</a></li>
-              <li><a href="#">Top Losers</a></li>
-              <li><a href="#">New Listing</a></li>
-              <li><a href="#">Defi</a></li>
-              <li><a href="#">Metaverse</a></li>
+              <li>
+                <a href="#">All</a>
+              </li>
+              <li>
+                <a href="#">Top Gainers</a>
+              </li>
+              <li>
+                <a href="#">Top Losers</a>
+              </li>
+              <li>
+                <a href="#">New Listing</a>
+              </li>
+              <li>
+                <a href="#">Defi</a>
+              </li>
+              <li>
+                <a href="#">Metaverse</a>
+              </li>
             </ul>
           </div>
-          <img className='line-market' src={line_market} alt="" />
+          <img className="line-market" src={line_market} alt="" />
           <div className="cards-container">
             {marketData.map((crypto, index) => (
               <MarketCard key={index} data={crypto} />
             ))}
           </div>
+        </div>
+      </div>
+
+      <div className="button-see">
+        <div className="container">
+          <a href="#">See All Market <img src={share} alt="" /></a>
         </div>
       </div>
     </>
