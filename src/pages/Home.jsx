@@ -23,6 +23,13 @@ import adaIcon from "../assets/btc.svg";
 import bnbIcon from "../assets/btc.svg";
 import dogeIcon from "../assets/btc.svg";
 import maticIcon from "../assets/btc.svg";
+import tradingLine from "../assets/trading-line.svg";
+import account from "../assets/account.svg";
+import verify from "../assets/verify.svg";
+import wallet from "../assets/wallet.svg";
+import trading from "../assets/trading.svg";
+
+
 import "../css/Home.css";
 import laptop from "../assets/laptop.png";
 
@@ -221,7 +228,7 @@ export default function Home() {
 
           <div className="header-right">
             <button className="login-button">
-              <a href="#">Log In</a>
+              <a href="login">Log In</a>
             </button>
             <button className="register-button">
               <a href="#">Sign In</a>
@@ -346,6 +353,48 @@ export default function Home() {
           <a href="#">See All Market <img src={share} alt="" /></a>
         </div>
       </div>
+
+      <div className="start-trading">
+        <div className="container">
+          <h1 className="starting">Start Trading In Simple Process</h1>
+          <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          <img src={tradingLine} alt="" width={"100%"} />
+          <div className="cards">
+            <div className="card">
+              <img src={account} alt="" />
+              <h2>Create Account</h2>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <a className="a-card" href="">Sign Up Now</a>
+            </div>
+            <div className="card">
+              <img src={verify} alt="" />
+              <h2>Verify Bank Account</h2>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <a className="a-card" href="">Verify Now</a>
+            </div>
+            <div className="card">
+              <img src={wallet} alt="" />
+              <h2>Add Fund in Wallet</h2>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <a className="a-card" href="">Add Now</a>
+            </div>
+            <div className="card">
+              <img src={trading} alt="" />
+              <h2>Start Trading</h2>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <a className="a-card" href="">Start Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="why-chose">
+        <div className="container">
+          <h1>Why Choose Crypto Brains!</h1>
+          <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+      </div>
+
     </>
   );
 }

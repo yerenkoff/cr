@@ -441,6 +441,90 @@
   text-align: center;
 }
 
+.start-trading {
+  background-color: #1E1F25;
+  text-align: center;
+}
+
+.start-trading .container {
+  position: relative;
+}
+
+.start-trading .starting {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  color: #fff;
+  font-size: 48px;
+  color: aliceblue;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.start-trading p {
+  color: #ADB3BF;
+  font-size: 20px;
+}
+
+.start-trading img {
+  position: relative;
+  margin-top: 30px;
+}
+
+.start-trading .cards {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
+
+.start-trading .cards .card {
+  background-color: #272A34;
+  border-radius: 16px;
+  /* display: inline-block; */
+  width: 280px;
+  height: 400px;
+  position: relative;
+}
+
+.start-trading .cards .card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 30px;
+}
+
+.start-trading .cards .card h2 {
+  color: #fff;
+
+}
+
+.start-trading .cards .card p {
+  margin-top: 30px;
+  text-align: center;
+  padding: 10px;
+}
+
+.cards .card .a-card {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+}
+
+.why-chose .container h1 {
+  color: #fff;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.why-chose .container p {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+
+
 @media (max-width: 768px) {
   .market-header {
     flex-direction: column;
