@@ -228,7 +228,7 @@ export default function Home() {
 
           <div className="header-right">
             <button className="login-button">
-              <a href="/#/login">Log In</a>
+              <a href="#/login">Log In</a>
             </button>
             <button className="register-button">
               <a href="#">Sign In</a>
